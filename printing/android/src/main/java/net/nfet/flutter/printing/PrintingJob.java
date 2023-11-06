@@ -348,7 +348,7 @@ public class PrintingJob extends PrintDocumentAdapter {
                     shareFile);
 
             Intent shareIntent = new Intent();
-            shareIntent.setAction(Intent.ACTION_SEND);
+            shareIntent.setAction(Intent.ACTION_SENDTO);
             shareIntent.setType("application/pdf");
             shareIntent.putExtra(Intent.EXTRA_STREAM, apkURI);
             shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
