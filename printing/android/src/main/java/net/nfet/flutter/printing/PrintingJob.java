@@ -331,7 +331,7 @@ public class PrintingJob extends PrintDocumentAdapter {
             final String subject, final String body, final ArrayList<String> emails) {
         assert name != null;
 
-        Log.d("SHARE", "sharePdf: " + name + " " + subject + " " + body + " " + emails.size().toString());
+        Log.d("SHARE", "sharePdf: " + name + " " + subject + " " + body + " " );
 
         try {
             final File shareDirectory = new File(context.getCacheDir(), "share");
