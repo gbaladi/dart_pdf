@@ -349,10 +349,10 @@ public class PrintingJob extends PrintDocumentAdapter {
 
             Intent shareIntent = new Intent();
             shareIntent.setAction(Intent.ACTION_SEND);
-            shareIntent.setType("*/*");
-            shareIntent.setData(Uri.parse("mailto:"));
+            shareIntent.setType("text/plain");
+//            shareIntent.setData(Uri.parse("mailto:"));
             shareIntent.putExtra(Intent.EXTRA_STREAM, apkURI);
-            shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//            shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             shareIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
             shareIntent.putExtra(Intent.EXTRA_TEXT, body);
             shareIntent.putExtra(
