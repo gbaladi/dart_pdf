@@ -361,13 +361,30 @@ public class PrintingJob extends PrintDocumentAdapter {
             List<ResolveInfo> resInfoList = context.getPackageManager().queryIntentActivities(
                     chooserIntent, PackageManager.MATCH_DEFAULT_ONLY);
 
-            for (ResolveInfo resolveInfo : resInfoList) {
-                String packageName = resolveInfo.activityInfo.packageName;
-                context.grantUriPermission(packageName, apkURI,
-                        Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-                                | Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            }
+//            for (ResolveInfo resolveInfo : resInfoList) {
+//                String packageName = resolveInfo.activityInfo.packageName;
+//                context.grantUriPermission(packageName, apkURI,
+//                        Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+//                                | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//            }
+
+            boolean resolved = false;
+for(ResolveInfo resolveInfo: resolvedInfoList){
+  if(resolveInfo.activityInfo.packageName.startsWith("com.google.android.gm")){
+    shareIntent.setClassName(
+      resolveInfo.activityInfo.packageName, 
+      resolveInfo.activityInfo.name );
+    resolved = true;
+    break;
+  }
+}
+if(resolved){
             context.startActivity(chooserIntent);
+}else{
+  Toast.makeText(this, "É necessário ter o GMAIL instalado", Toast.LENGTH_LONG).show();
+}
+
+//            context.startActivity(chooserIntent);
             shareFile.deleteOnExit();
         } catch (IOException e) {
             e.printStackTrace();
