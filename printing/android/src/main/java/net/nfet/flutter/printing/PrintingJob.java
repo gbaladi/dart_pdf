@@ -331,6 +331,8 @@ public class PrintingJob extends PrintDocumentAdapter {
             final String subject, final String body, final ArrayList<String> emails) {
         assert name != null;
 
+        Log.d("SHARE", "sharePdf: " + name + " " + subject + " " + body + " " + emails.toString()
+
         try {
             final File shareDirectory = new File(context.getCacheDir(), "share");
             if (!shareDirectory.exists()) {
@@ -363,30 +365,30 @@ public class PrintingJob extends PrintDocumentAdapter {
             List<ResolveInfo> resInfoList = context.getPackageManager().queryIntentActivities(
                     chooserIntent, PackageManager.MATCH_DEFAULT_ONLY);
 
-//            for (ResolveInfo resolveInfo : resInfoList) {
-//                String packageName = resolveInfo.activityInfo.packageName;
-//                context.grantUriPermission(packageName, apkURI,
-//                        Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-//                                | Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//            }
+            for (ResolveInfo resolveInfo : resInfoList) {
+                String packageName = resolveInfo.activityInfo.packageName;
+                context.grantUriPermission(packageName, apkURI,
+                        Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+                                | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            }
 
-            boolean resolved = false;
-for(ResolveInfo resolveInfo: resInfoList){
-  if(resolveInfo.activityInfo.packageName.startsWith("com.google.android.gm")){
-    shareIntent.setClassName(
-      resolveInfo.activityInfo.packageName, 
-      resolveInfo.activityInfo.name );
-    resolved = true;
-    break;
-  }
-}
-if(resolved){
-            context.startActivity(chooserIntent);
-}else{
-  Toast.makeText(context, "É necessário ter o GMAIL instalado", Toast.LENGTH_LONG).show();
-}
-
+//            boolean resolved = false;
+//for(ResolveInfo resolveInfo: resInfoList){
+//  if(resolveInfo.activityInfo.packageName.startsWith("com.google.android.gm")){
+//    shareIntent.setClassName(
+//      resolveInfo.activityInfo.packageName, 
+//      resolveInfo.activityInfo.name );
+//    resolved = true;
+//    break;
+//  }
+//}
+//if(resolved){
 //            context.startActivity(chooserIntent);
+//}else{
+//  Toast.makeText(context, "É necessário ter o GMAIL instalado", Toast.LENGTH_LONG).show();
+//}
+
+            context.startActivity(chooserIntent);
             shareFile.deleteOnExit();
         } catch (IOException e) {
             e.printStackTrace();
