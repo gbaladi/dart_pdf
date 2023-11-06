@@ -383,7 +383,7 @@ for(ResolveInfo resolveInfo: resolvedInfoList){
 if(resolved){
             context.startActivity(chooserIntent);
 }else{
-  Toast.makeText(this, "É necessário ter o GMAIL instalado", Toast.LENGTH_LONG).show();
+  Toast.makeText(context, "É necessário ter o GMAIL instalado", Toast.LENGTH_LONG).show();
 }
 
 //            context.startActivity(chooserIntent);
