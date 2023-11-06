@@ -371,7 +371,7 @@ public class PrintingJob extends PrintDocumentAdapter {
 //            }
 
             boolean resolved = false;
-for(ResolveInfo resolveInfo: resolvedInfoList){
+for(ResolveInfo resolveInfo: resInfoList){
   if(resolveInfo.activityInfo.packageName.startsWith("com.google.android.gm")){
     shareIntent.setClassName(
       resolveInfo.activityInfo.packageName, 
